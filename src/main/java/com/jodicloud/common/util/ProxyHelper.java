@@ -13,11 +13,11 @@ public class ProxyHelper {
 	static String getResourceViaProxy(String proxyURL, String resourceURl) throws Exception{
 	
 
-		DefaultApacheHttpClientConfig cc = new DefaultApacheHttpClientConfig();
-		cc.getProperties().put(
+		DefaultApacheHttpClientConfig clientConfig = new DefaultApacheHttpClientConfig();
+		clientConfig.getProperties().put(
 				DefaultApacheHttpClientConfig.PROPERTY_PROXY_URI, proxyURL);
 
-		Client client = ApacheHttpClient.create(cc);
+		Client client = ApacheHttpClient.create(clientConfig);
 		WebResource webResource = client
 				.resource(resourceURl);
 
