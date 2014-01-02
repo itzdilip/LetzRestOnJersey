@@ -11,10 +11,7 @@ import com.sun.jersey.client.apache.config.DefaultApacheHttpClientConfig;
 public class ProxyHelper {
 
 	static String getResourceViaProxy(String proxyURL, String resourceURl) throws Exception{
-		/*
-		 * System.setProperty("http.proxyHost", "172.28.84.6");
-		 * System.setProperty("http.proxyPort", "3128");
-		 */
+	
 
 		DefaultApacheHttpClientConfig cc = new DefaultApacheHttpClientConfig();
 		cc.getProperties().put(
