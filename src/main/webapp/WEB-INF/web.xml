@@ -18,7 +18,7 @@
 		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>com.jodicloud.resources;com.jodicloud.exception.mapper</param-value>
+			<param-value>com.smd.resources;com.smd.exception.mapper</param-value>
 		</init-param>
 		<init-param>
 			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>

@@ -10,6 +10,6 @@
 	<context:component-scan base-package="com.jodicloud.*" />
 	<bean id="clientConfig"
 		class="com.sun.jersey.client.apache.config.DefaultApacheHttpClientConfig" />
-	<bean id="proxyHelper" class="com.jodicloud.util.ProxyHelper" />
+	<bean id="proxyHelper" class="com.smd.util.ProxyHelper" />
 
 </beans>
