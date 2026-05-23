@@ -1,36 +1,27 @@
 package com.smd.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.client.apache.ApacheHttpClient;
-import com.sun.jersey.client.apache.config.DefaultApacheHttpClientConfig;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.URI;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 
+@Component
 public class ProxyHelper {
 
-	@Autowired
-	private DefaultApacheHttpClientConfig clientConfig;
+	public String getResourceViaProxy(String proxyURL, String resourceURL) throws Exception {
+		// Modern Spring way to handle proxies with RestTemplate
+		SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
+		
+		URI proxyUri = new URI(proxyURL);
+		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUri.getHost(), proxyUri.getPort()));
+		requestFactory.setProxy(proxy);
 
-	String getResourceViaProxy(String proxyURL, String resourceURl)
-			throws Exception {
-
-		System.out.println(" Is client config null ?? "
-				+ (clientConfig == null));
-		// DefaultApacheHttpClientConfig clientConfig = new
-		// DefaultApacheHttpClientConfig();
-		clientConfig.getProperties().put(
-				DefaultApacheHttpClientConfig.PROPERTY_PROXY_URI, proxyURL);
-
-		Client client = ApacheHttpClient.create(clientConfig);
-		WebResource webResource = client.resource(resourceURl);
-
-		ClientResponse response = webResource.accept("application/json").get(
-				ClientResponse.class);
-
-		return response.getEntity(String.class);
-
+		RestTemplate restTemplate = new RestTemplate(requestFactory);
+		return restTemplate.getForObject(resourceURL, String.class);
 	}
 
 }

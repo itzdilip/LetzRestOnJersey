@@ -1,11 +1,9 @@
 package com.smd.manager.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.smd.exception.JodiCloudException;
@@ -14,10 +12,13 @@ import com.smd.model.Server;
 import com.smd.model.ServerActionRequest;
 import com.smd.model.ServerRequest;
 import com.smd.model.Servers;
+import com.smd.repository.ServerRepository;
+
 @Component
 public class ServiceMangerImpl implements IServiceManager {
 
-	private HashMap<String, Server> serverHolder = new HashMap<String, Server>();
+	@Autowired
+	private ServerRepository serverRepository;
 
 	public Server createServer(ServerRequest serverRequest)
 			throws JodiCloudException {
@@ -28,35 +29,25 @@ public class ServiceMangerImpl implements IServiceManager {
 		server.setServerName(serverRequest.getServerName());
 		server.setServerStatus("Created");
 		server.setStartTime(new Date().toString());
-		serverHolder.put(serverId, server);
-		return server;
+		
+		return serverRepository.save(server);
 	}
 
 	public Server actionOnServer(ServerActionRequest actionRequest) {
-
-		Server server = new Server();
+		Server server = serverRepository.findById(actionRequest.getServerID()).orElse(new Server());
 		server.setServerID(actionRequest.getServerID());
 		server.setServerStatus(actionRequest.getAction());
-		return server;
+		return serverRepository.save(server);
 	}
 
 	public Servers getAllServers() {
 		Servers servers = new Servers();
-		ArrayList<Server> serverList = new ArrayList<Server>();
-		for (Map.Entry<String, Server> entry : serverHolder.entrySet()) {
-			Server server = entry.getValue();
-
-			serverList.add(server);
-
-		}
-		servers.setServers(serverList);
+		servers.setServers(new java.util.ArrayList<>(serverRepository.findAll()));
 		return servers;
 	}
 
 	public Server getServerDetails(String serverID) {
-		Server server= new Server();
-		server =serverHolder.get(serverID);
-		return server;
+		return serverRepository.findById(serverID).orElse(null);
 	}
 
 }

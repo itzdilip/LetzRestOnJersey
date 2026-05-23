@@ -1,2 +1,43 @@
-# LetzRestOnJersey
-Sample code for Using Jersey in building the REST services  Using standards,  Writing unit test cases using jersey Test framework for REST service Resources,  Using excepting mapping for jersey service,  Hateoas support in building the REST services using jersey(1.17),  Jersey client behind the proxy,  Spring,  Maven,
+# LetzRestOnJersey (Modernized)
+
+This project demonstrates how to build and modernize RESTful services using **Jersey (JAX-RS)** integrated with **Spring Boot**. It serves as a comprehensive example of maintaining a Jersey-centric architecture while leveraging modern cloud-native standards.
+
+## Key Features
+- **Jersey & Spring Boot Integration:** Uses `spring-boot-starter-jersey` for a seamless JAX-RS experience within a Spring Boot container.
+- **Persistence with Spring Data JPA:** Replaced in-memory storage with an H2 database and JPA entities.
+- **Modern HATEOAS:** Demonstrates dynamic link building using JAX-RS `UriInfo` and custom annotations.
+- **Global Exception Mapping:** Uses `@Provider` and `ExceptionMapper` for standardized error responses.
+- **API Documentation:** Integrated **SpringDoc OpenAPI (Swagger)** for interactive API exploration.
+- **Validation:** Implements Bean Validation (JSR-303) for request payloads.
+- **Modern Client Calls:** Uses Spring's `RestTemplate` for handling external HTTP calls through proxies.
+
+## Technology Stack
+- **Framework:** Jersey 2.x (via Spring Boot 2.7.x)
+- **Language:** Java 8+
+- **Database:** H2 (In-memory)
+- **ORM:** Spring Data JPA
+- **Build Tool:** Maven
+- **Documentation:** OpenAPI 3 / Swagger UI
+
+## Getting Started
+### Prerequisites
+- JDK 1.8 or higher
+- Maven 3.6+
+
+### Running the Application
+```bash
+mvn spring-boot:run
+```
+The application will start on port `8080`.
+
+### API Documentation
+Once running, you can access the Swagger UI at:
+`http://localhost:8080/swagger-ui.html`
+
+### Testing
+```bash
+mvn test
+```
+
+## Modernization Journey
+For a detailed step-by-step guide on how this project was migrated from a legacy Jersey `.war` setup to its current state, see [ENHANCEMENT_STEPS.md](ENHANCEMENT_STEPS.md).

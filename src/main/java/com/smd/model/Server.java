@@ -1,12 +1,18 @@
 package com.smd.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
+@Entity
+@Table(name = "servers")
 @XmlRootElement
 public class Server {
 
-	
-	private String ServerID;
+	@Id
+	private String serverID;
 	
 	private String serverName;
 	
@@ -14,10 +20,9 @@ public class Server {
 	
 	private String startTime;
 
+	@Transient
 	private Links links;
-	
-	
-	
+
 	public Links getLinks() {
 		return links;
 	}
@@ -27,11 +32,11 @@ public class Server {
 	}
 
 	public String getServerID() {
-		return ServerID;
+		return serverID;
 	}
 
 	public void setServerID(String serverID) {
-		ServerID = serverID;
+		this.serverID = serverID;
 	}
 
 	public String getServerName() {
@@ -57,13 +62,4 @@ public class Server {
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

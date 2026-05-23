@@ -2,6 +2,9 @@ package com.smd.response;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class ServiceResponse<T> implements Serializable {
 	private T payLoad;
 	private String errorcode;

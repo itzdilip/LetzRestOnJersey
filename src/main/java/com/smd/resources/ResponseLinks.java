@@ -9,10 +9,8 @@ import java.lang.annotation.Target;
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface ResponseLinks {
 
-	Class<?> resourceName();
+        Class<?> resourceName();
 
-	String[] annotatedMethodNames();
-
-	
+        String[] annotatedMethodNames();
 
 }
