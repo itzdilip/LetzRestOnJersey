@@ -14,5 +14,7 @@ public class JerseyConfig extends ResourceConfig {
         register(ServersResource.class);
         // Register the ExceptionMapper
         register(JodiCloudExceptionMapper.class);
+        // Register Swagger/OpenAPI resources
+        register(io.swagger.v3.jaxrs2.integration.resources.OpenApiResource.class);
     }
 }
