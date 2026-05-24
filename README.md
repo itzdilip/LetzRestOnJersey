@@ -24,9 +24,18 @@ This project demonstrates how to build and modernize RESTful services using **Je
 - JDK 1.8 or higher
 - Maven 3.6+
 
+### Documentation
+*   [ARCHITECTURE.md](ARCHITECTURE.md) - Deep dive into design patterns, architectural flow, and developer guides.
+*   [ENHANCEMENT_STEPS.md](ENHANCEMENT_STEPS.md) - History and roadmap of the modernization effort.
+
 ### Running the Application
 ```bash
+# Using Maven
 mvn spring-boot:run
+
+# Using Docker
+docker build -t letzrest-jersey .
+docker run -p 8080:8080 letzrest-jersey
 ```
 The application will start on port `8080`.
 
